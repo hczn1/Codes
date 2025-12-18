@@ -1,1 +1,3 @@
-### This is my Main Rep, I'll be posting my works here.
+*I literally have nothing in say*
+
+**Hmmh.. But this rep will gonna be my main rep to share my codes**
