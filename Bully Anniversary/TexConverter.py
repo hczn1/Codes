@@ -128,7 +128,7 @@ def main():
 
         idx = count - 1
         fmt, w, h, data = decompress_block(f, offsets[idx], compress_on_disk)
-        print(f"Format: {fmt} | Size: {w}x{h}")
+        print(f"Pixel size: {w}x{h}")
 
         img = None
         if fmt == 0: # RGBA8888 - Uncompressed zlib
