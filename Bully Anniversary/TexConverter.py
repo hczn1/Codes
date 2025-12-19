@@ -232,15 +232,8 @@ def DECODE_FMT7_DXT5(data, width, height):
     return pixels
 
 # PVRTC2 - FMT9 #
-# This may be not accurate, But most modded tex files isn't pvrtc
 
 def DECODE_FMT9_PVRTC2(data, width, height):
-    def UNPACK_565(val):
-        r = ((val >> 11) & 0x1F) << 3
-        g = ((val >> 5) & 0x3F) << 2
-        b = (val & 0x1F) << 3
-        return r, g, b
-
     pixels = [(0, 0, 0, 255)] * (width * height)
     
     block_width = 8
@@ -263,8 +256,8 @@ def DECODE_FMT9_PVRTC2(data, width, height):
             color0 = (block >> 0) & 0xFFFF
             color1 = (block >> 16) & 0xFFFF
 
-            c0_r, c0_g, c0_b = unpack_565(color0)
-            c1_r, c1_g, c1_b = unpack_565(color1)
+            c0_r, c0_g, c0_b = DECODE_RGB565(color0)
+            c1_r, c1_g, c1_b = DECODE_RGB565(color1)
 			# 4 Color interpolation 
             colors = [
                 (c0_r, c0_g, c0_b, 255),
