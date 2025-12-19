@@ -1,6 +1,11 @@
 # Bully Anniversary Edition Tex file converter
 # --------------------------------------------
 # By Haku [hczn]
+# --------------------------------------------
+# Usage:
+# 	pip install pillow
+# 	python TexConverter.py fileName.tex
+# --------------------------------------------
 
 import struct
 import os
@@ -128,7 +133,8 @@ def main():
 
         idx = count - 1
         fmt, w, h, data = decompress_block(f, offsets[idx], compress_on_disk)
-        print(f"Pixel size: {w}x{h}")
+        print(f"> Parsing {tex_path}")
+        print(f"> Pixel size: {w}x{h}")
 
         img = None
         if fmt == 0: # RGBA8888 - Uncompressed zlib
@@ -147,9 +153,10 @@ def main():
         if img:
             out_name = os.path.splitext(tex_path)[0] + ".png"
             img.save(out_name)
-            print(f"Done converting: {out_name}")
+            print(f"> Decompressing {tex_path}")
+            print(f"> [INFO] {out_name} Successfully converted\n")
         else:
-            print(f"Unsupported {fmt} format")
+            print(f"> [INFO] Unsupported Tex file format {fmt}!")
 
 if __name__ == "__main__":
     main()
