@@ -156,7 +156,7 @@ def main():
             print(f"> Decompressing {tex_path}")
             print(f"> [INFO] {out_name} Successfully converted\n")
         else:
-            print(f"> [INFO] Unsupported Tex file format {fmt}!")
+            print(f"> [INFO] Unsupported Tex file format {fmt}!\n")
 
 if __name__ == "__main__":
     main()
