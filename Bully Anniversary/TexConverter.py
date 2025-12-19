@@ -1,11 +1,13 @@
-# Bully Anniversary Edition Tex file converter
-# --------------------------------------------
-# By Haku [hczn]
-# --------------------------------------------
-# Usage:
-# 	pip install pillow
-# 	python TexConverter.py fileName.tex
-# --------------------------------------------
+#| Bully Anniversary Edition Tex file converter
+#| 
+#| By Haku [hczn]
+#|
+#| 08-16-2025 — 12-19-2025
+#|
+#| Usage:
+#|	pip install pillow
+#|	python TexConverter.py fileName.tex
+#|
 
 import struct
 import os
@@ -37,7 +39,6 @@ def decompress_block(f, offset, compress_on_disk):
             data = comp_data
     else:
         data = f.read(size)
-        
         if len(data) > 5:
             try:
                 orig_len = struct.unpack_from("<I", data, 0)[0]
@@ -149,14 +150,17 @@ def main():
             img = Image.new("RGBA", (w, h)); img.putdata(pixels)
         elif fmt == 8: # Alpha8 - ?
             img = Image.frombytes("L", (w, h), data)
-        
+			
+        # I've had converted all the tex file format that mostly are modded
+		# 7 (Zlib compressed), 0 (Zlib uncompressed), 5 (Original?)
+		
         if img:
             out_name = os.path.splitext(tex_path)[0] + ".png"
             img.save(out_name)
             print(f"> Decompressing {tex_path}")
             print(f"> [INFO] {out_name} Successfully converted\n")
         else:
-            print(f"> [INFO] Unsupported Tex file format {fmt}!\n")
+            print(f"> [INFO] Unsupported Tex file format {fmt}!")
 
 if __name__ == "__main__":
     main()
